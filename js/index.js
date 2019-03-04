@@ -50,19 +50,23 @@ logo.setAttribute('src', siteContent['nav']['img-src']);
 const navItems = Object.values(siteContent.nav);
 navItems.pop();
 let navAnchors = document.querySelectorAll('a');
+
 for (let i = 0; i < navAnchors.length; i++) {
   navAnchors[i].textContent = navItems[i];
-  navAnchors[i].style.color = 'green';
 }
 
+// Add new Items to Navigation & change Navigation's color
+const navigation = document.querySelector('nav');
 const navItem1 = document.createElement('a');
 navItem1.textContent = 'Home';
 const navItem2 = document.createElement('a');
 navItem2.textContent = 'Blog';
-
-const navigation = document.querySelector('nav');
 navigation.prepend(navItem1);
 navigation.append(navItem2);
+const aTags = Array.from(navigation.children);
+aTags.forEach(child => {
+  child.style.color = 'green';
+});
 
 // Section CTA
 const header = document.querySelector('h1');
@@ -70,8 +74,13 @@ header.innerHTML = siteContent.cta.h1.split(' ').join('<br>');
 const ctaText = document.querySelector('.cta-text');
 const getStarted = ctaText.querySelector('button');
 getStarted.textContent = 'Get Started';
+getStarted.style.borderRadius = '3px';
 const ctaImg = document.querySelector('#cta-img');
 ctaImg.src = siteContent.cta['img-src'];
+
+const mainContent = document.querySelector('.main-content');
+mainContent.style.borderTop = '1px solid gray';
+mainContent.style.borderBottom = '1px solid gray';
 
 // Main Content: top-content
 const topContent = document.querySelector('.top-content');
@@ -85,6 +94,7 @@ topText[1].textContent = siteContent['main-content']['about-content'];
 // Main Content: middle-img
 const middleImg = document.querySelector('#middle-img');
 middleImg.src = siteContent['main-content']['middle-img-src'];
+middleImg.style.borderRadius = '3px';
 
 // Main Content: bottom-content
 const bottomContent = document.querySelector('.bottom-content');
