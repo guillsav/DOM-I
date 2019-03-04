@@ -59,8 +59,10 @@ for (let i = 0; i < navAnchors.length; i++) {
 const navigation = document.querySelector('nav');
 const navItem1 = document.createElement('a');
 navItem1.textContent = 'Home';
+navItem1.href = '#';
 const navItem2 = document.createElement('a');
 navItem2.textContent = 'Blog';
+navItem2.href = '#';
 navigation.prepend(navItem1);
 navigation.append(navItem2);
 const aTags = Array.from(navigation.children);
