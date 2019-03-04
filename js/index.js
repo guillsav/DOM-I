@@ -56,7 +56,13 @@ for (let i = 0; i < navAnchors.length; i++) {
 }
 
 const navItem1 = document.createElement('a');
-navItem1.textContent;
+navItem1.textContent = 'Home';
+const navItem2 = document.createElement('a');
+navItem2.textContent = 'Blog';
+
+const navigation = document.querySelector('nav');
+navigation.prepend(navItem1);
+navigation.append(navItem2);
 
 // Section CTA
 const header = document.querySelector('h1');
