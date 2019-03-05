@@ -47,41 +47,44 @@ let logo = document.getElementById('logo-img');
 logo.setAttribute('src', siteContent['nav']['img-src']);
 
 // Navigation
-const navItems = Object.values(siteContent.nav);
-navItems.pop();
-let navAnchors = document.querySelectorAll('a');
+let nav = document.querySelectorAll('nav a');
+nav = Array.from(nav);
+const navData = Object.values(siteContent.nav);
 
-for (let i = 0; i < navAnchors.length; i++) {
-  navAnchors[i].textContent = navItems[i];
+for (let i = 0; i < nav.length; i++) {
+  nav[i].textContent = navData[i];
 }
 
-// Add new Items to Navigation & change Navigation's color
-const navigation = document.querySelector('nav');
-const navItem1 = document.createElement('a');
-navItem1.textContent = 'Home';
-navItem1.href = '#';
-const navItem2 = document.createElement('a');
-navItem2.textContent = 'Blog';
-navItem2.href = '#';
-navigation.prepend(navItem1);
-navigation.append(navItem2);
+let navigation = document.querySelector('nav');
+const newNavItem1 = document.createElement('a');
+newNavItem1.textContent = 'Home';
+newNavItem1.href = '#';
+navigation.prepend(newNavItem1);
+const newNavItem2 = document.createElement('a');
+newNavItem2.textContent = 'Blog';
+newNavItem2.href = '#';
+navigation.append(newNavItem2);
+
 const aTags = Array.from(navigation.children);
-aTags.forEach(child => {
-  child.style.color = 'green';
-});
+aTags.forEach(a => (a.style.color = 'green'));
 
 // console.log(Object.values(siteContent['main-content']));
 // console.log(Object.keys(siteContent['main-content']));
 
 // Section CTA
-const header = document.querySelector('h1');
-header.innerHTML = siteContent.cta.h1.split(' ').join('<br>');
-const ctaText = document.querySelector('.cta-text');
-const getStarted = ctaText.querySelector('button');
-getStarted.textContent = 'Get Started';
-getStarted.style.borderRadius = '3px';
-const ctaImg = document.querySelector('#cta-img');
-ctaImg.src = siteContent.cta['img-src'];
+let cta = document.querySelectorAll('.cta h1, .cta button, .cta img');
+cta = Array.from(cta);
+const ctaData = Object.values(siteContent.cta);
+
+for (let i = 0; i < cta.length; i++) {
+  if (cta[i].tagName === 'H1') {
+    cta[i].innerHTML = ctaData[i].split(' ').join('<br>');
+  } else if (cta[i].id) {
+    cta[i].src = ctaData[i];
+  } else {
+    cta[i].textContent = ctaData[i];
+  }
+}
 
 const mainContent = document.querySelector('.main-content');
 mainContent.style.borderTop = '1px solid gray';
@@ -111,15 +114,19 @@ for (let i = 0; i < bottomContent.length; i++) {
 }
 
 // Contact
-// const contact = document.querySelector('.contact');
-// const contactHeader = contact.querySelector('h4');
-// contactHeader.textContent = siteContent.contact['contact-h4'];
-// const contactInfo = contact.getElementsByTagName('p');
-// contactInfo[0].textContent = siteContent.contact.address;
-// contactInfo[1].textContent = siteContent.contact.phone;
-// contactInfo[2].textContent = siteContent.contact.email;
+let contact = document.querySelectorAll('.contact h4, .contact p');
+contact = Array.from(contact);
+const contactData = Object.values(siteContent.contact);
+
+for (let i = 0; i < contact.length; i++) {
+  contact[i].textContent = contactData[i];
+}
 
 // Footer
-const footer = document.querySelector('footer');
-const footerText = footer.querySelector('p');
-footerText.textContent = siteContent.footer.copyright;
+let footer = document.querySelectorAll('footer p');
+footer = Array.from(footer);
+const footerData = Object.values(siteContent.footer);
+
+for (let i = 0; i < footer.length; i++) {
+  footer[i].textContent = footerData[i];
+}
