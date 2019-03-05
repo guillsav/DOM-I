@@ -70,6 +70,9 @@ aTags.forEach(child => {
   child.style.color = 'green';
 });
 
+// console.log(Object.values(siteContent['main-content']));
+// console.log(Object.keys(siteContent['main-content']));
+
 // Section CTA
 const header = document.querySelector('h1');
 header.innerHTML = siteContent.cta.h1.split(' ').join('<br>');
@@ -84,37 +87,37 @@ const mainContent = document.querySelector('.main-content');
 mainContent.style.borderTop = '1px solid gray';
 mainContent.style.borderBottom = '1px solid gray';
 
-// Main Content: top-content
-const topContent = document.querySelector('.top-content');
-const topH4 = topContent.querySelectorAll('h4');
-topH4[0].textContent = siteContent['main-content']['features-h4'];
-topH4[1].textContent = siteContent['main-content']['about-h4'];
-const topText = topContent.querySelectorAll('p');
-topText[0].textContent = siteContent['main-content']['features-content'];
-topText[1].textContent = siteContent['main-content']['about-content'];
+// Main-content: top-content
+let topMainContentAndMilldleContent = document.querySelectorAll(
+  '.top-content h4, .top-content p, #middle-img'
+);
+topMainContentAndMilldleContent = Array.from(topMainContentAndMilldleContent);
+const mainContentData = Object.values(siteContent['main-content']);
 
-// Main Content: middle-img
-const middleImg = document.querySelector('#middle-img');
-middleImg.src = siteContent['main-content']['middle-img-src'];
-middleImg.style.borderRadius = '3px';
+for (let i = 0; i < topMainContentAndMilldleContent.length; i++) {
+  if (topMainContentAndMilldleContent[i].className) {
+    topMainContentAndMilldleContent[i].src = mainContentData[i];
+  }
+  topMainContentAndMilldleContent[i].textContent = mainContentData[i];
+}
 
-// Main Content: bottom-content
-const bottomContent = document.querySelector('.bottom-content');
-const bottomH4 = bottomContent.querySelectorAll('h4');
-bottomH4[0].textContent = siteContent['main-content']['services-h4'];
-bottomH4[1].textContent = siteContent['main-content']['product-h4'];
-const bottomText = bottomContent.querySelectorAll('p');
-bottomText[0].textContent = siteContent['main-content']['services-content'];
-bottomText[1].textContent = siteContent['main-content']['product-content'];
+let bottomContent = document.querySelectorAll(
+  '.bottom-content h4, .bottom-content p'
+);
+bottomContent = Array.from(bottomContent);
+
+for (let i = 0; i < bottomContent.length; i++) {
+  bottomContent[i].textContent = mainContentData[i + 5];
+}
 
 // Contact
-const contact = document.querySelector('.contact');
-const contactHeader = contact.querySelector('h4');
-contactHeader.textContent = siteContent.contact['contact-h4'];
-const contactInfo = contact.getElementsByTagName('p');
-contactInfo[0].textContent = siteContent.contact.address;
-contactInfo[1].textContent = siteContent.contact.phone;
-contactInfo[2].textContent = siteContent.contact.email;
+// const contact = document.querySelector('.contact');
+// const contactHeader = contact.querySelector('h4');
+// contactHeader.textContent = siteContent.contact['contact-h4'];
+// const contactInfo = contact.getElementsByTagName('p');
+// contactInfo[0].textContent = siteContent.contact.address;
+// contactInfo[1].textContent = siteContent.contact.phone;
+// contactInfo[2].textContent = siteContent.contact.email;
 
 // Footer
 const footer = document.querySelector('footer');
